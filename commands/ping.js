@@ -1,5 +1,5 @@
 module.exports = {
-    name: ['//ping'],  // Nome principal do comando
+    name: ['//ping'],
     description: 'Retorna a latência do bot',
     execute(message) {
         if (message.author.bot) return;

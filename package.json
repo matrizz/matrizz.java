@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "matrizz.java.js",
   "scripts": {
-    "dev": "node --env-file .env.local --watch bot.js"
+    "dev": "node bot.js"
   },
   "keywords": [],
   "author": "",

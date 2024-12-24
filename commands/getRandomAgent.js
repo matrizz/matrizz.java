@@ -2,8 +2,8 @@ const { AttachmentBuilder } = require('../matrizz.java.js')
 const agents = require('../agents/index.js')
 
 module.exports = {
-    name: ['//agent', '//agente'],  // Nome do comando
-    description: 'Retorna um agente aleatório de Valorant',  // Descrição do comando
+    name: ['//agent', '//agente'],
+    description: 'Retorna um agente aleatório de Valorant',
     execute(message) {
         if (message.author.bot) return
 

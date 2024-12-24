@@ -1,8 +1,8 @@
+require('dotenv').config()
 const { Client, GatewayIntentBits } = require('discord.js');
 const fs = require('fs')
 const path = require('path')
 const helpCommands = require('./commands/commands')
-const { FormattBoldStringCode } = require('./utils/index')
 
 const client = new Client({
     intents: [
@@ -46,7 +46,6 @@ client.on('messageCreate', (message) => {
         });
     }
 
-    // Verificar se o comando existe entre os aliases
     const command = commands.get(message.content.toLowerCase());
     if (command) {
         command.execute(message);

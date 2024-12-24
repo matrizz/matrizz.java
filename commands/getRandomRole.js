@@ -2,8 +2,8 @@ const { AttachmentBuilder } = require('../matrizz.java.js');
 const agents = require('../agents/index.js');
 
 module.exports = {
-    name: ['//role', '//function'],  // Nome do comando
-    description: 'Retorna uma role aleatória do Valorant',  // Descrição do comando
+    name: ['//role', '//function'],
+    description: 'Retorna uma role aleatória do Valorant',
     execute(message) {
         if (message.author.bot) return;
 
