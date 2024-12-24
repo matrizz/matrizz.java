@@ -1,7 +1,7 @@
 {
   "name": "matrizz.java",
   "version": "1.0.0",
-  "main": "matrizz.java.js",
+  "main": "bot.js",
   "scripts": {
     "dev": "node bot.js"
   },
