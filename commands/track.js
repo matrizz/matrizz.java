@@ -1,5 +1,4 @@
 const { AttachmentBuilder } = require("../bot");
-const { main } = require("../tracker/valorant");
 const fs = require('fs');
 const axios = require('axios');
 
