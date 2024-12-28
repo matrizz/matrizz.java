@@ -1,4 +1,4 @@
-const { AttachmentBuilder } = require('../matrizz.java.js');
+const { AttachmentBuilder } = require('../bot.js')
 const agents = require('../agents/index.js');
 
 module.exports = {

@@ -12,8 +12,11 @@ module.exports = {
         if (message.author.bot) return
 
         const pid = [playerName, playerTag].join('%23')
-        const response = await axios.get(`http://localhost:3000/api/screenshot?pid=${pid}`, {
-            responseType: 'arraybuffer'
+        const response = await axios.get(`https://matrizz-java-api.vercel.app/api/screenshot?pid=${pid}`, {
+            responseType: 'arraybuffer',
+            headers: {
+                "x-api-key": process.env.API_KEY
+            }
         })
 
         if (response.headers['content-type'].startsWith('image/png')) {
