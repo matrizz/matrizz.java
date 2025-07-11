@@ -1,6 +1,5 @@
 const Discord = require("discord.js")
-
-const config = require("./config.json")
+require('dotenv').config()
 
 const client = new Discord.Client({
   intents: [1, 512, 32768, 2, 128,
@@ -44,7 +43,8 @@ client.slashCommands = new Discord.Collection()
 
 require('./handler')(client)
 
-client.login(config.token)
+client.login(process.env.TOKEN)
+console.log(process.env.TOKEN)
 
 const fs = require('fs');
 
