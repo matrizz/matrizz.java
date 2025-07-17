@@ -1,18 +1,21 @@
 const Discord = require("discord.js")
 require('dotenv').config()
+const db = require('./lib/utils/db.js')
 
+
+console.log()
 const client = new Discord.Client({
   intents: [1, 512, 32768, 2, 128,
-  Discord.IntentsBitField.Flags.DirectMessages,
-  Discord.IntentsBitField.Flags.GuildInvites,
-  Discord.IntentsBitField.Flags.GuildMembers,
-  Discord.IntentsBitField.Flags.GuildPresences,
-  Discord.IntentsBitField.Flags.Guilds,
-  Discord.IntentsBitField.Flags.MessageContent,
-  Discord.IntentsBitField.Flags.Guilds,
-  Discord.IntentsBitField.Flags.GuildMessageReactions,
-  Discord.IntentsBitField.Flags.GuildEmojisAndStickers
-],
+    Discord.IntentsBitField.Flags.DirectMessages,
+    Discord.IntentsBitField.Flags.GuildInvites,
+    Discord.IntentsBitField.Flags.GuildMembers,
+    Discord.IntentsBitField.Flags.GuildPresences,
+    Discord.IntentsBitField.Flags.Guilds,
+    Discord.IntentsBitField.Flags.MessageContent,
+    Discord.IntentsBitField.Flags.Guilds,
+    Discord.IntentsBitField.Flags.GuildMessageReactions,
+    Discord.IntentsBitField.Flags.GuildEmojisAndStickers
+  ],
   partials: [
     Discord.Partials.User,
     Discord.Partials.Message,
@@ -23,6 +26,7 @@ const client = new Discord.Client({
 });
 
 module.exports = client
+
 
 client.on('interactionCreate', (interaction) => {
 
@@ -44,7 +48,6 @@ client.slashCommands = new Discord.Collection()
 require('./handler')(client)
 
 client.login(process.env.TOKEN)
-console.log(process.env.TOKEN)
 
 const fs = require('fs');
 

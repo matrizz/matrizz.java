@@ -52,7 +52,7 @@ module.exports = {
                 .setColor('Yellow')
                 .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
                 .setTitle('Nova enquete: ' + titulo)
-                .setDescription(`Nova enquete criada por ${interaction.user} (${interaction.user.id}).\n\n>  ${emojis[0]} ${op1}\n> ${emojis[1]} ${op2}`)
+                .setDescription(`Nova enquete criada por ${interaction.user} ||(${interaction.user.id})||.\n\n>  ${emojis[0]} ${op1}\n> ${emojis[1]} ${op2}`)
                 .setTimestamp(new Date(new Date().getTime() + tempoms))
                 .setFooter({ text: `Final da enquete:` })
 
@@ -85,7 +85,7 @@ module.exports = {
                             .setColor(null)
                             .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
                             .setTitle('Enquete Encerrada: ' + titulo)
-                            .setDescription(`Nova enquete criada por ${interaction.user} (${interaction.user.id}).\n\n>  ${emojis[0]} ${op1}\n> ${emojis[1]} ${op2}`)
+                            .setDescription(`Nova enquete criada por ${interaction.user} ||(${interaction.user.id})||.\n\n>  ${emojis[0]} ${op1}\n> ${emojis[1]} ${op2}`)
                             .setTimestamp(new Date(new Date().getTime() + tempoms))
                             .setFooter({ text: `Enquete encerrada às:` })
 

@@ -27,8 +27,8 @@ module.exports = {
 
     run: async (client, interaction) => {
 
-        const staffRoleID = '1064607050702794884' // ID cargo de staff
-        const channelLogID = '976206625125855273' // ID canal de logs
+        const staffRoleID = '1392383902865428551'
+        const channelLogID = '1395224778863935591'
         const staffMember_Verification = interaction.options.getUser('staff')
         const staffMember = interaction.guild.members.cache.get(staffMember_Verification.id)
         const stars = interaction.options.getNumber('estrelas')
@@ -39,11 +39,11 @@ module.exports = {
                 .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
                 .setColor('Green')
                 .setThumbnail(user.user.displayAvatarURL({ dynamic: true }))
-                .setDescription(`O membro ${interaction.user} (${interaction.user.id}) enviou uma avaliação.`)
+                .setDescription(`O membro ${interaction.user} ||(${interaction.user.id})|| enviou uma avaliação.`)
                 .addFields(
                     {
                         name: `> 💼 Staff`,
-                        value: `${user} (${user.user.id})`,
+                        value: `${user} ||(${user.user.id})||`,
                         inline: false
                     },
                     {
@@ -59,7 +59,7 @@ module.exports = {
                 )
             try {
                 interaction.guild.channels.cache.get(channelLogID).send({ embeds: [embed] }).then(() => {
-                    interaction.reply({ ephemeral: true, content: `Sucesso, sua avaliação foi enviada!\nDados:\n\`\`\`\n- [💼] Staff: ${user.user.username} (${user.user.id})\n- [⭐] Estrelas: ${estrelas}/5\n- [📝] Descrição: ${desc}\n\`\`\`` })
+                    interaction.reply({ ephemeral: true, content: `Sucesso, sua avaliação foi enviada!\nDados:\n\`\`\`\n- [💼] Staff: ${user.user.username} ||(${user.user.id})||\n- [⭐] Estrelas: ${estrelas}/5\n- [📝] Descrição: ${desc}\n\`\`\`` })
                 })
             } catch (err) {
                 interaction.reply({ ephemeral: true, content: `Algo deu errado: \`\`\`\n${err}\n\`\`\`` })

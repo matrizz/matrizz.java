@@ -6,7 +6,7 @@ const client = require('../index')
 const db = require("../lib/utils/db") // npm i quick.db better-sqlite3
 
 client.on("interactionCreate", (interaction) => {
-  if (interaction.isSelectMenu()) {
+  if (interaction.isStringSelectMenu()) {
     if (interaction.customId === "painel_ticket") {
       let opc = interaction.values[0]
       if (opc === "opc1") {

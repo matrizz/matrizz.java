@@ -19,8 +19,9 @@ module.exports = {
         let user = interaction.options.getUser("usuário");
         if (!user) user = interaction.user;
 
-        let carteira = await db.get(`wallet${user.id}`)
-        if (carteira === null) carteira = 0;
+        let carteira = db.get(`wallet${user.id}`);
+        
+        if (carteira === null || carteira === undefined) carteira = 0;
 
         if (user.id === interaction.user.id) {
             let embed = new Discord.EmbedBuilder()
@@ -35,7 +36,7 @@ module.exports = {
                 .setColor("Yellow")
                 .setTitle("💸 Carteira")
                 .setThumbnail(user.displayAvatarURL({ dynamic: true }))
-                .setDescription(`O usuário ${user} (${user.id}) possui \`${carteira} moedas\` em sua carteira.`);
+                .setDescription(`O usuário ${user} ||(${user.id})|| possui \`${carteira} moedas\` em sua carteira.`);
 
             interaction.reply({ embeds: [embed] })
         }

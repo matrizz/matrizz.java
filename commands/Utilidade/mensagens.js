@@ -28,13 +28,13 @@ module.exports = {
 
       interaction.reply({ embeds: [embed] })
     } else {
-      let messageCounter = await db.get(`messageCounter_${member.user.id}`)
+      let messageCounter = db.get(`userMsgCount_1317227596542378138_${member.user.id}`)
       if (!messageCounter) messageCounter = 0
 
       const embed = new Discord.EmbedBuilder()
         .setColor('Yellow')
         .setAuthor({ name: member.user.username, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
-        .setDescription(`O usuário ${member} (${member.user.id}) possui \`${messageCounter}\` mensagens neste servidor.`)
+        .setDescription(`O usuário ${member} ||(${member.user.id})|| possui \`${messageCounter}\` mensagens neste servidor.`)
 
       interaction.reply({ embeds: [embed] })
     }

@@ -6,24 +6,15 @@ const db = require('../lib/utils/db');
 
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
-    if (message.channel.id !== '1102777589707317338') return;
-    let numberCount = await db.get(`numberCount_${message.channel.id}`)
-    if (!numberCount) numberCount = 0
+    if (message.channel.id !== '1317227596542378138') return;
 
-    if (isNaN(message.content)) return message.reply({ content: 'Isso não é um número' }).then(msg => {
-        setTimeout(() => {
-            msg.delete()
-            message.delete()
-        }, 5000)
-    })
+    let msgCount = await db.get(`msgCount_${message.channel.id}`)
+    if (!msgCount) msgCount = 0
+    msgCount += 1
+    await db.set(`msgCount_${message.channel.id}`, msgCount)
 
-    if (Number(message.content) !== numberCount + 1) return message.reply({ content: `O número correto é \`${numberCount + 1}\`.` }).then(msg => {
-        setTimeout(() => {
-            msg.delete()
-            message.delete()
-        }, 5000)
-    })
-
-    await db.set(`numberCount_${message.channel.id}`, Number(message.content))
-    message.react('✅')
+    let userCount = await db.get(`userMsgCount_${message.channel.id}_${message.author.id}`)
+    if (!userCount) userCount = 0
+    userCount += 1
+    await db.set(`userMsgCount_${message.channel.id}_${message.author.id}`, userCount)
 })

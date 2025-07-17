@@ -156,7 +156,7 @@ module.exports = {
                                                             const embedLog = new Discord.EmbedBuilder()
                                                                 .setColor('White')
                                                                 .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-                                                                .setDescription(`**Usuário registrado:** ${interaction.user} (${interaction.user.id}).\n**Cargos Recebidos:** \`${idadeSelecionada.name}\`, \`${generoSelecionado.name}\` e \`${roles.registrado.name}\`.`)
+                                                                .setDescription(`**Usuário registrado:** ${interaction.user} ||(${interaction.user.id})||.\n**Cargos Recebidos:** \`${idadeSelecionada.name}\`, \`${generoSelecionado.name}\` e \`${roles.registrado.name}\`.`)
 
                                                             canal.logs.send({ embeds: [embedLog] })
 
