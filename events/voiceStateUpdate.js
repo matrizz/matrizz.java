@@ -11,5 +11,12 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
         } catch (err) {
             console.error(`Erro ao remover mute de ${newState.member.user.tag}:`, err)
         }
+    } else if (!oldState.deaf && newState.deaf) {
+        try {
+            await newState.setDeaf(false)
+        } catch (err) {
+            console.error(`Erro ao remover deaf de ${newState.member.user.tag}:`, err)
+        }
+
     }
 })
