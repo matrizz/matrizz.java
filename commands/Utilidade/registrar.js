@@ -8,20 +8,20 @@ module.exports = {
     run: async (client, interaction) => {
 
         const roles = {
-            registrado: interaction.guild.roles.cache.get('843208507280982036'), // Coloque o ID do cargo,
+            registrado: interaction.guild.roles.cache.get('1395189733973561424'),
             idade: {
-                mais18: interaction.guild.roles.cache.get('843208934138445844'), // Coloque o ID do cargo
-                menos18: interaction.guild.roles.cache.get('843208970255990804') // Coloque o ID do cargo
+                mais18: interaction.guild.roles.cache.get('1395189448878325760'),
+                menos18: interaction.guild.roles.cache.get('1395189520328294651')
             },
             genero: {
-                homem: interaction.guild.roles.cache.get('843208678189695026'), // Coloque o ID do cargo
-                mulher: interaction.guild.roles.cache.get('843208777770991628'), // Coloque o ID do cargo
-                outros: interaction.guild.roles.cache.get('843208860231532624') // Coloque o ID do cargo
+                homem: interaction.guild.roles.cache.get('1395190102161887242'),
+                mulher: interaction.guild.roles.cache.get('1395190139407564811'),
+                outros: interaction.guild.roles.cache.get('843208860231532624')
             }
         }
 
         const canal = {
-            logs: interaction.guild.channels.cache.get('976206625125855273'), // Coloque o ID do cargo
+            logs: interaction.guild.channels.cache.get('1395191643727986872'),
         }
 
         if (interaction.member.roles.cache.get(roles.registrado.id)) return interaction.reply({
@@ -100,12 +100,6 @@ module.exports = {
                                         .setCustomId('Mulher' + interaction.id)
                                         .setEmoji('👩')
                                         .setLabel('Mulher')
-                                        .setStyle(Discord.ButtonStyle.Primary),
-
-                                    new Discord.ButtonBuilder()
-                                        .setCustomId('Outro' + interaction.id)
-                                        .setEmoji('👀')
-                                        .setLabel('Outro')
                                         .setStyle(Discord.ButtonStyle.Primary)
                                 )
 
