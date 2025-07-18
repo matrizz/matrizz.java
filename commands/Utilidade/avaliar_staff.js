@@ -79,7 +79,7 @@ module.exports = {
             interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: '[❌] Erro: O usuário mencionado não é da staff.' })
         }
         else if (stars < 1 || stars > 5) {
-            interaction.reply({ flags: Discord.MessageFlags.Ephemeral, ephemeral: true, content: '[❌] Erro: Você só pode colocar estrelas de 1 a 5.' })
+            interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: '[❌] Erro: Você só pode colocar estrelas de 1 a 5.' })
         }
         else {
             avaliarStaff(staffMember, stars, description)
