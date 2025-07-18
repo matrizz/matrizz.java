@@ -48,7 +48,7 @@ module.exports = {
                     .setStyle(Discord.ButtonStyle.Primary)
             );
 
-            interaction.reply({ embeds: [embed_ephemeral], ephemeral: true }).then(() => {
+            interaction.reply({ embeds: [embed_ephemeral], flags: Discord.MessageFlags.Ephemeral }).then(() => {
                 canal.send({ embeds: [embed_verificacao], components: [botao] })
             })
         }

@@ -21,7 +21,7 @@ module.exports = {
 
     run: async (client, interaction) => {
 
-        if (interaction.user.id !== DONO) return interaction.reply({ content: `Apenas o meu dono pode utilizar este comando!`, ephemeral: true })
+        if (interaction.user.id !== DONO) return interaction.reply({ content: `Apenas o meu dono pode utilizar este comando!`, flags: Discord.MessageFlags.Ephemeral })
 
         try {
 

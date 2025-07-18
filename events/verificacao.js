@@ -12,7 +12,7 @@ client.on("interactionCreate", async (interaction) => {
       let role = interaction.guild.roles.cache.get(role_id);
       if (!role) return;
       interaction.member.roles.add(role.id)
-      interaction.reply({ content: `Ola **${interaction.user.username}**, você foi verificado!`, ephemeral: true })
+      interaction.reply({ content: `Ola **${interaction.user.username}**, você foi verificado!`, flags: Discord.MessageFlags.Ephemeral })
     }
   }
 })

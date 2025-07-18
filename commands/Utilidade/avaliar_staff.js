@@ -59,27 +59,27 @@ module.exports = {
                 )
             try {
                 interaction.guild.channels.cache.get(channelLogID).send({ embeds: [embed] }).then(() => {
-                    interaction.reply({ ephemeral: true, content: `Sucesso, sua avaliação foi enviada!\nDados:\n\`\`\`\n- [💼] Staff: ${user.user.username} ||(${user.user.id})||\n- [⭐] Estrelas: ${estrelas}/5\n- [📝] Descrição: ${desc}\n\`\`\`` })
+                    interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: `Sucesso, sua avaliação foi enviada!\nDados:\n\`\`\`\n- [💼] Staff: ${user.user.username} ||(${user.user.id})||\n- [⭐] Estrelas: ${estrelas}/5\n- [📝] Descrição: ${desc}\n\`\`\`` })
                 })
             } catch (err) {
-                interaction.reply({ ephemeral: true, content: `Algo deu errado: \`\`\`\n${err}\n\`\`\`` })
+                interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: `Algo deu errado: \`\`\`\n${err}\n\`\`\`` })
             }
         }
 
         if (!interaction.guild.roles.cache.get(staffRoleID)) {
-            interaction.reply({ ephemeral: true, content: '[❌] Erro: O cargo de staff não existe ou foi configurado incorretamente.' })
+            interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: '[❌] Erro: O cargo de staff não existe ou foi configurado incorretamente.' })
         }
         else if (!interaction.guild.channels.cache.get(channelLogID)) {
-            interaction.reply({ ephemeral: true, content: '[❌] Erro: O canal de logs não existe ou foi configurado incorretamente.' })
+            interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: '[❌] Erro: O canal de logs não existe ou foi configurado incorretamente.' })
         }
         else if (!staffMember) {
-            interaction.reply({ ephemeral: true, content: '[❌] Erro: O usuário mencionado não está no servidor.' })
+            interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: '[❌] Erro: O usuário mencionado não está no servidor.' })
         }
         else if (!staffMember.roles.cache.get(staffRoleID)) {
-            interaction.reply({ ephemeral: true, content: '[❌] Erro: O usuário mencionado não é da staff.' })
+            interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: '[❌] Erro: O usuário mencionado não é da staff.' })
         }
         else if (stars < 1 || stars > 5) {
-            interaction.reply({ ephemeral: true, content: '[❌] Erro: Você só pode colocar estrelas de 1 a 5.' })
+            interaction.reply({ flags: Discord.MessageFlags.Ephemeral, ephemeral: true, content: '[❌] Erro: Você só pode colocar estrelas de 1 a 5.' })
         }
         else {
             avaliarStaff(staffMember, stars, description)

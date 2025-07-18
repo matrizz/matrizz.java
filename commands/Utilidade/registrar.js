@@ -15,8 +15,7 @@ module.exports = {
             },
             genero: {
                 homem: interaction.guild.roles.cache.get('1395190102161887242'),
-                mulher: interaction.guild.roles.cache.get('1395190139407564811'),
-                outros: interaction.guild.roles.cache.get('843208860231532624')
+                mulher: interaction.guild.roles.cache.get('1395190139407564811')
             }
         }
 
@@ -25,7 +24,7 @@ module.exports = {
         }
 
         if (interaction.member.roles.cache.get(roles.registrado.id)) return interaction.reply({
-            ephemeral: true, embeds: [
+            flags: Discord.MessageFlags.Ephemeral, embeds: [
                 new Discord.EmbedBuilder()
                     .setColor('Red')
                     .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
@@ -46,7 +45,7 @@ module.exports = {
                 .setStyle(Discord.ButtonStyle.Primary)
         )
 
-        interaction.reply({ ephemeral: true, embeds: [embedOne], components: [button] }).then(() => {
+        interaction.reply({ flags: Discord.MessageFlags.Ephemeral, embeds: [embedOne], components: [button] }).then(() => {
             const filter = (i) => i.customId === 'iniciarRegistro' + interaction.id
             interaction.channel.createMessageComponentCollector({ max: 1, filter: filter })
                 .on('collect', (c) => {
@@ -72,7 +71,7 @@ module.exports = {
 
                     let idadeSelecionada
 
-                    interaction.editReply({ ephemeral: true, embeds: [embedIdade], components: [idadeButton] }).then(() => {
+                    interaction.editReply({ flags: Discord.MessageFlags.Ephemeral, embeds: [embedIdade], components: [idadeButton] }).then(() => {
                         const filter = (i) => i.customId === 'mais18' + interaction.id || i.customId === 'menos18' + interaction.id
                         interaction.channel.createMessageComponentCollector({ max: 1, filter: filter })
                             .on('collect', (c) => {
@@ -105,7 +104,7 @@ module.exports = {
 
                                 let generoSelecionado
 
-                                interaction.editReply({ ephemeral: true, embeds: [embedGenero], components: [generoButton] }).then(() => {
+                                interaction.editReply({ flags: Discord.MessageFlags.Ephemeral, embeds: [embedGenero], components: [generoButton] }).then(() => {
                                     const filter = (i) => i.customId === 'Homem' + interaction.id || i.customId === 'Mulher' + interaction.id || i.customId === 'Outro' + interaction.id
                                     interaction.channel.createMessageComponentCollector({ max: 1, filter: filter })
                                         .on('collect', (c) => {
@@ -135,7 +134,7 @@ module.exports = {
                                                     .setStyle(Discord.ButtonStyle.Primary),
                                             )
 
-                                            interaction.editReply({ ephemeral: true, embeds: [embedConcluirRegistro], components: [concluirRegistroButton] }).then(() => {
+                                            interaction.editReply({ flags: Discord.MessageFlags.Ephemeral, embeds: [embedConcluirRegistro], components: [concluirRegistroButton] }).then(() => {
                                                 const filter = (i) => i.customId === 'sim' + interaction.id || i.customId === 'nao' + interaction.id
                                                 interaction.channel.createMessageComponentCollector({ max: 1, filter: filter })
                                                     .on('collect', (c) => {
@@ -147,7 +146,7 @@ module.exports = {
                                                                 .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
                                                                 .setDescription(`**Seu registro foi concluído!**\n\n*Cargos recebidos: \`${idadeSelecionada.name}\`, \`${generoSelecionado.name}\` e \`${roles.registrado.name}\`.*`)
 
-                                                            interaction.editReply({ ephemeral: true, embeds: [embedSim], components: [] })
+                                                            interaction.editReply({ flags: Discord.MessageFlags.Ephemeral, embeds: [embedSim], components: [] })
 
                                                             interaction.member.roles.add(idadeSelecionada.id)
                                                             interaction.member.roles.add(generoSelecionado.id)
@@ -166,7 +165,7 @@ module.exports = {
                                                                 .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
                                                                 .setDescription(`**Seu registro foi cancelado!**`)
 
-                                                            interaction.editReply({ ephemeral: true, embeds: [embedNao], components: [] })
+                                                            interaction.editReply({ flags: Discord.MessageFlags.Ephemeral, embeds: [embedNao], components: [] })
                                                         }
                                                     })
                                             })

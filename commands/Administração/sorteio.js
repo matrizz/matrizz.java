@@ -87,7 +87,7 @@ module.exports = {
   run: async (client, interaction, args) => {
     if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.ManageGuild)) {
 
-      interaction.reply({ content: `Você não possui permissão para utilizar este comando.`, ephemeral: true })
+      interaction.reply({ content: `Você não possui permissão para utilizar este comando.`, flags: Discord.MessageFlags.Ephemeral })
 
     } else {
       let premio = interaction.options.getString("prêmio");
@@ -124,36 +124,38 @@ Clique no botão para parcipar.\n**Boa sorte!!!**`)
         .setDescription(`Não foi possível promover o soteio!`);
 
       const msg = await interaction.reply({ embeds: [embed], components: [button] }).catch((e) => {
-          interaction.reply({ embeds: [erro] });
-        });
+        interaction.reply({ embeds: [erro] });
+      });
 
       const coletor = msg.createMessageComponentCollector({
         time: ms(tempo),
       });
 
       coletor.on("end", (i) => {
-        interaction.editReply({ components: [
+        interaction.editReply({
+          components: [
             new Discord.ActionRowBuilder().addComponents(
-                new Discord.ButtonBuilder()
-                  .setDisabled(true)
-                  .setCustomId("botao")
-                  .setEmoji("🎉")
-                  .setStyle(Discord.ButtonStyle.Secondary)
-              )
-          ] });
+              new Discord.ButtonBuilder()
+                .setDisabled(true)
+                .setCustomId("botao")
+                .setEmoji("🎉")
+                .setStyle(Discord.ButtonStyle.Secondary)
+            )
+          ]
+        });
       });
 
       coletor.on("collect", (i) => {
 
         if (i.customId === "botao") {
 
-          if (click.includes(i.user.id)) return i.reply({ content: `Olá ${interaction.user}, você ja está participando do sorteio.`, ephemeral: true });
+          if (click.includes(i.user.id)) return i.reply({ content: `Olá ${interaction.user}, você ja está participando do sorteio.`, flags: Discord.MessageFlags.Ephemeral });
 
           click.push(i.user.id);
 
           interaction.editReply({ embeds: [embed] });
 
-          i.reply({ content: `Olá ${interaction.user}, você entrou no sorteio.`, ephemeral: true });
+          i.reply({ content: `Olá ${interaction.user}, você entrou no sorteio.`, flags: Discord.MessageFlags.Ephemeral });
         }
 
       });

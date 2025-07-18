@@ -22,7 +22,7 @@ module.exports = {
                 .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
                 .setDescription(`Espere \`${time}\` para resgatar seu daily novamente!`)
 
-            interaction.reply({ embeds: [embed], ephemeral: true }); return;
+            interaction.reply({ embeds: [embed], flags: Discord.MessageFlags.Ephemeral }); return;
         } else { cooldowns[interaction.user.id].lastCmd = Date.now() };
 
         let quantia = Math.ceil(Math.random() * 5000);

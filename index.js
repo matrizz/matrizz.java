@@ -28,7 +28,8 @@ const client = new Discord.Client({
 module.exports = client
 
 
-client.on('interactionCreate', (interaction) => {
+client.on('interactionCreate', async (interaction) => {
+
 
   if (interaction.type === Discord.InteractionType.ApplicationCommand) {
 
@@ -41,6 +42,36 @@ client.on('interactionCreate', (interaction) => {
     cmd.run(client, interaction)
 
   }
+  if (!interaction.isButton()) return;
+
+  // Exemplo: só permita que moderadores usem os botões
+  if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.BanMembers)) {
+    return interaction.reply({ ephemeral: true, content: 'Você não tem permissão para usar este botão.' });
+  }
+
+  if (interaction.customId.startsWith('ban_temp_')) {
+    const userId = interaction.customId.split('_')[2];
+    const member = await interaction.guild.members.fetch(userId).catch(() => null);
+    if (!member) return interaction.reply({ ephemeral: true, content: 'Usuário não encontrado.' });
+
+    // Ban temporário: 1 dia (exemplo)
+    await member.ban({ reason: 'Ban temporário via report' });
+    setTimeout(async () => {
+      await interaction.guild.members.unban(userId, 'Ban temporário expirado');
+    }, 24 * 60 * 60 * 1000);
+
+    interaction.reply({ ephemeral: true, content: `Usuário banido temporariamente por 1 dia.` });
+  }
+
+  if (interaction.customId.startsWith('ban_perm_')) {
+    const userId = interaction.customId.split('_')[2];
+    const member = await interaction.guild.members.fetch(userId).catch(() => null);
+    if (!member) return interaction.reply({ ephemeral: true, content: 'Usuário não encontrado.' });
+
+    await member.ban({ reason: 'Ban permanente via report' });
+    interaction.reply({ ephemeral: true, content: `Usuário banido permanentemente.` });
+  }
+
 })
 
 client.slashCommands = new Discord.Collection()
@@ -48,6 +79,9 @@ client.slashCommands = new Discord.Collection()
 require('./handler')(client)
 
 client.login(process.env.TOKEN)
+
+client.on('error', console.error)
+process.on('unhandledRejection', console.error)
 
 const fs = require('fs');
 

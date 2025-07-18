@@ -9,7 +9,7 @@ module.exports = {
   run: async (client, interaction) => {
 
     if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.Administrator)) {
-      interaction.reply({ content: `Você não possui permissão para utilizar este comando.`, ephemeral: true })
+      interaction.reply({ content: `Você não possui permissão para utilizar este comando.`, flags: Discord.MessageFlags.Ephemeral })
     } else {
       let embed_g = new Discord.EmbedBuilder()
         .setColor("Green")

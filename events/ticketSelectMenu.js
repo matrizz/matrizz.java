@@ -21,7 +21,7 @@ client.on("interactionCreate", (interaction) => {
         if (!interaction.guild.channels.cache.get(categoria)) categoria = null;
 
         if (interaction.guild.channels.cache.find(c => c.name === nome)) {
-          interaction.reply({ content: `❌ Você já possui um ticket aberto em ${interaction.guild.channels.cache.find(c => c.name === nome)}!`, ephemeral: true })
+          interaction.reply({ content: `❌ Você já possui um ticket aberto em ${interaction.guild.channels.cache.find(c => c.name === nome)}!`, flags: Discord.MessageFlags.Ephemeral })
         } else {
           interaction.guild.channels.create({
             name: nome,
@@ -46,7 +46,7 @@ client.on("interactionCreate", (interaction) => {
               }
             ]
           }).then((ch) => {
-            interaction.reply({ content: `✅ Olá ${interaction.user}, seu ticket foi aberto em ${ch}!`, ephemeral: true })
+            interaction.reply({ content: `✅ Olá ${interaction.user}, seu ticket foi aberto em ${ch}!`, flags: Discord.MessageFlags.Ephemeral })
             let embed = new Discord.EmbedBuilder()
               .setColor("Random")
               .setDescription(`Olá ${interaction.user}, você abriu o ticket pela opção 1.`);
@@ -75,7 +75,7 @@ client.on("interactionCreate", (interaction) => {
         if (!interaction.guild.channels.cache.get(categoria)) categoria = null;
 
         if (interaction.guild.channels.cache.find(c => c.name === nome)) {
-          interaction.reply({ content: `❌ Você já possui um ticket aberto em ${interaction.guild.channels.cache.find(c => c.name === nome)}!`, ephemeral: true })
+          interaction.reply({ content: `❌ Você já possui um ticket aberto em ${interaction.guild.channels.cache.find(c => c.name === nome)}!`, flags: Discord.MessageFlags.Ephemeral })
         } else {
           interaction.guild.channels.create({
             name: nome,
@@ -100,7 +100,7 @@ client.on("interactionCreate", (interaction) => {
               }
             ]
           }).then((ch) => {
-            interaction.reply({ content: `✅ Olá ${interaction.user}, seu ticket foi aberto em ${ch}!`, ephemeral: true })
+            interaction.reply({ content: `✅ Olá ${interaction.user}, seu ticket foi aberto em ${ch}!`, flags: Discord.MessageFlags.Ephemeral })
             let embed = new Discord.EmbedBuilder()
               .setColor("Random")
               .setDescription(`Olá ${interaction.user}, você abriu o ticket pela opção 2.`);
@@ -129,7 +129,7 @@ client.on("interactionCreate", (interaction) => {
         if (!interaction.guild.channels.cache.get(categoria)) categoria = null;
 
         if (interaction.guild.channels.cache.find(c => c.name === nome)) {
-          interaction.reply({ content: `❌ Você já possui um ticket aberto em ${interaction.guild.channels.cache.find(c => c.name === nome)}!`, ephemeral: true })
+          interaction.reply({ content: `❌ Você já possui um ticket aberto em ${interaction.guild.channels.cache.find(c => c.name === nome)}!`, flags: Discord.MessageFlags.Ephemeral })
         } else {
           interaction.guild.channels.create({
             name: nome,
@@ -154,7 +154,7 @@ client.on("interactionCreate", (interaction) => {
               }
             ]
           }).then((ch) => {
-            interaction.reply({ content: `✅ Olá ${interaction.user}, seu ticket foi aberto em ${ch}!`, ephemeral: true })
+            interaction.reply({ content: `✅ Olá ${interaction.user}, seu ticket foi aberto em ${ch}!`, flags: Discord.MessageFlags.Ephemeral })
             let embed = new Discord.EmbedBuilder()
               .setColor("Random")
               .setDescription(`Olá ${interaction.user}, você abriu o ticket pela opção 3.`);

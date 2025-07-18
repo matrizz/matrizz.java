@@ -23,15 +23,15 @@ module.exports = {
     run: async (client, interaction) => {
 
         if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.Administrator)) {
-            interaction.reply({ content: `Você não possui permissão para utilizar este comando.`, ephemeral: true })
+            interaction.reply({ content: `Você não possui permissão para utilizar este comando.`, flags: Discord.MessageFlags.Ephemeral })
         } else {
             const canal_formulario = interaction.options.getChannel("canal_formulário")
             const canal_logs = interaction.options.getChannel("canal_logs")
 
             if (canal_formulario.type !== Discord.ChannelType.GuildText) {
-                interaction.reply({ content: `O canal ${canal_formulario} não é um canal de texto.`, ephemeral: true })
+                interaction.reply({ content: `O canal ${canal_formulario} não é um canal de texto.`, flags: Discord.MessageFlags.Ephemeral })
             } else if (canal_logs.type !== Discord.ChannelType.GuildText) {
-                interaction.reply({ content: `O canal ${canal_logs} não é um canal de texto.`, ephemeral: true })
+                interaction.reply({ content: `O canal ${canal_logs} não é um canal de texto.`, flags: Discord.MessageFlags.Ephemeral })
             } else {
                 await db.set(`form_channel_${interaction.guild.id}`, canal_formulario.id)
                 await db.set(`log_channel_${interaction.guild.id}`, canal_logs.id)
@@ -41,7 +41,7 @@ module.exports = {
                     .setTitle("Canais Configurados!")
                     .setDescription(`> Canal do Formulário: ${canal_formulario}.\n> Canal de Logs: ${canal_logs}.`)
 
-                interaction.reply({ embeds: [embed], ephemeral: true }).then(() => {
+                interaction.reply({ embeds: [embed], flags: Discord.MessageFlags.Ephemeral }).then(() => {
                     let embed_formulario = new Discord.EmbedBuilder()
                         .setColor("Random")
                         .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })

@@ -35,7 +35,7 @@ module.exports = {
     run: async (client, interaction) => {
 
         if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.Administrator)) {
-            interaction.reply({ ephemeral: true, content: 'Você não possui permissão para utilizar este comando.' })
+            interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: 'Você não possui permissão para utilizar este comando.' })
         } else {
             const tempo = interaction.options.getString('tempo')
             const titulo = interaction.options.getString('título')
@@ -43,7 +43,7 @@ module.exports = {
             const op2 = interaction.options.getString('opção2')
 
             let tempoms = ms(tempo)
-            if (isNaN(tempoms)) return interaction.reply({ ephemeral: true, content: 'A opção tempo está inválida: \`' + tempo + '\`.' })
+            if (isNaN(tempoms)) return interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: 'A opção tempo está inválida: \`' + tempo + '\`.' })
 
             const emojis = ['1️⃣', '2️⃣']
 
@@ -51,12 +51,12 @@ module.exports = {
                 .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
                 .setColor('Yellow')
                 .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-                .setTitle('Nova enquete: ' + titulo)
+                .setTitle('\x200b Nova enquete: ' + titulo)
                 .setDescription(`Nova enquete criada por ${interaction.user} ||(${interaction.user.id})||.\n\n>  ${emojis[0]} ${op1}\n> ${emojis[1]} ${op2}`)
                 .setTimestamp(new Date(new Date().getTime() + tempoms))
                 .setFooter({ text: `Final da enquete:` })
 
-            interaction.reply({ ephemeral: true, content: 'Enquete Criada!' }).then(() => {
+            interaction.reply({ flags: Discord.MessageFlags.Ephemeral, content: 'Enquete Criada!' }).then(() => {
                 interaction.channel.send({ embeds: [embed] }).then((msgg) => {
                     emojis.forEach(emoji => {
                         msgg.react(emoji)

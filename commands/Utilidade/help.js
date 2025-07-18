@@ -28,7 +28,7 @@ module.exports = {
             .setDescription(`Olá ${interaction.user}, veja meus comandos de **administração** abaixo:`);
 
         let painel = new Discord.ActionRowBuilder().addComponents(
-            new Discord.SelectMenuBuilder()
+            new Discord.StringSelectMenuBuilder()
                 .setCustomId("painel_help")
                 .setPlaceholder("Clique aqui!")
                 .addOptions(
@@ -59,7 +59,7 @@ module.exports = {
                 )
         )
 
-        interaction.reply({ embeds: [embed_painel], components: [painel], ephemeral: true }).then(() => {
+        interaction.reply({ embeds: [embed_painel], components: [painel], flags: Discord.MessageFlags.Ephemeral }).then(() => {
             interaction.channel.createMessageComponentCollector().on("collect", (c) => {
                 let valor = c.values[0];
 

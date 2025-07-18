@@ -7,7 +7,7 @@ const db = require("../lib/utils/db")
 client.on("interactionCreate", async (interaction) => {
   if (interaction.isButton()) {
     if (interaction.customId === "formulario") {
-      if (!interaction.guild.channels.cache.get(await db.get(`log_channel_${interaction.guild.id}`))) return interaction.reply({ content: `O sistema está desativado.`, ephemeral: true })
+      if (!interaction.guild.channels.cache.get(await db.get(`log_channel_${interaction.guild.id}`))) return interaction.reply({ content: `O sistema está desativado.`, flags: Discord.MessageFlags.Ephemeral })
       const modal = new Discord.ModalBuilder()
         .setCustomId("modal")
         .setTitle("Formulário");
@@ -77,7 +77,7 @@ client.on("interactionCreate", async (interaction) => {
           }
         );
 
-      interaction.reply({ content: `Olá **${interaction.user.username}**, seu formulário foi enviado com sucesso!`, ephemeral: true })
+      interaction.reply({ content: `Olá **${interaction.user.username}**, seu formulário foi enviado com sucesso!`, flags: Discord.MessageFlags.Ephemeral })
       await interaction.guild.channels.cache.get(await db.get(`log_channel_${interaction.guild.id}`)).send({ embeds: [embed] })
     }
   }

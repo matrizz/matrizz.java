@@ -21,7 +21,7 @@ module.exports = {
     let afk_mode = await db.get(`afk_mode${interaction.user.id}`);
 
     if (afk_mode === true) {
-      interaction.reply({ content: `Olá ${interaction.user}, seu modo AFK já está ativado.`, ephemeral: true })
+      interaction.reply({ content: `Olá ${interaction.user}, seu modo AFK já está ativado.`, flags: Discord.MessageFlags.Ephemeral })
     } else {
       interaction.reply({ content: `Olá ${interaction.user}, seu modo AFK foi ativado com sucesso!` })
       await db.set(`afk_mode${interaction.user.id}`, true)
